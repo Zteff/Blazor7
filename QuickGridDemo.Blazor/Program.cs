@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using QuickGridDemo.Blazor.Data;
 using QuickGridDemo.Data;
 using QuickGridDemo.Data.Models;
@@ -10,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<IProductRepository, ProductRepository>();
-builder.Services.AddSingleton(new NorthwindContext());
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddQuickGridEntityFrameworkAdapter();
+builder.Services.AddDbContext<NorthwindContext>();
 
 var app = builder.Build();
 
