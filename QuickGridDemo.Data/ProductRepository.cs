@@ -19,7 +19,7 @@ namespace QuickGridDemo.Data
             products = _context.Products.Include(p => p.Supplier).Include(p => p.Category).AsNoTracking().OrderBy(x => x.ProductId);
             if (!string.IsNullOrEmpty(filter))
             {
-                products = products.Where(x => EF.Functions.Like(x.ProductName, filter.Replace("%", ""))).OrderBy(x => x.ProductId);
+                products = products.Where(x => x.ProductName.Contains(filter)).OrderBy(x => x.ProductId);
             }
             return products;
         }
