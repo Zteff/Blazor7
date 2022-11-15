@@ -16,7 +16,7 @@ namespace QuickGridDemo.Data
         
         public IQueryable<Product> SearchProducts(string? filter)
         {
-            products = _context.Products.AsNoTracking().OrderBy(x => x.ProductId); //.Take(50);
+            products = _context.Products.Include(p => p.Supplier).Include(p => p.Category).AsNoTracking().OrderBy(x => x.ProductId);
             if (!string.IsNullOrEmpty(filter))
             {
                 products = products.Where(x => EF.Functions.Like(x.ProductName, filter.Replace("%", ""))).OrderBy(x => x.ProductId);
