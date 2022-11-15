@@ -1,0 +1,38 @@
+﻿@using QuickGridDemo.Data.Models;
+@using QuickGridDemo.Data;
+@using Microsoft.AspNetCore.Components.QuickGrid;
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<QuickGrid Items="@products" Pagination="@pagination">
+    <PropertyColumn Property="@(p => p.Category)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Supplier)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.ProductName)" Sortable="true">
+        <ColumnOptions>
+            <input @bind="@filter" placeholder="Search..." class="form-control" autofocus
+                   @bind:event="oninput"
+                   @onchange="UpdateFilter" />
+        </ColumnOptions>
+    </PropertyColumn>
+</QuickGrid>
+<Paginator Value="@pagination" />
+
+@code {
+    [Inject]
+    public IProductRepository? ProductsRepository { get; set; }
+
+    private IQueryable<Product>? products;
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    private string? filter;
+
+    protected override void OnInitialized()
+    {
+        UpdateFilter();
+    }
+
+    private void UpdateFilter()
+    {
+        products = ProductsRepository?.SearchProducts(filter);
+    }
+}
