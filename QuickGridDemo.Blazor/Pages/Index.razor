@@ -6,8 +6,8 @@
 <PageTitle>Index</PageTitle>
 
 <QuickGrid Items="@products" Pagination="@pagination">
-    <PropertyColumn Property="@(p => p.Category)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.Supplier)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Category.CategoryName)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Supplier.CompanyName)" Sortable="true" />
     <PropertyColumn Property="@(p => p.ProductName)" Sortable="true">
         <ColumnOptions>
             <input @bind="@filter" placeholder="Search..." class="form-control" autofocus
