@@ -16,10 +16,10 @@ namespace QuickGridDemo.Data
         
         public IQueryable<Product> SearchProducts(string? filter)
         {
-            products = _context.Products.Include(p => p.Supplier).Include(p => p.Category).AsNoTracking().OrderBy(x => x.ProductId);
+            products = _context.Products.Include(p => p.Supplier).Include(p => p.Category).AsNoTracking().OrderBy(x => x.ProductName);
             if (!string.IsNullOrEmpty(filter))
             {
-                products = products.Where(x => x.ProductName.Contains(filter)).OrderBy(x => x.ProductId);
+                products = products.Where(x => x.ProductName.Contains(filter)).OrderBy(x => x.ProductName);
             }
             return products;
         }
