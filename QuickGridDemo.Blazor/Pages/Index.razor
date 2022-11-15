@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Components.QuickGrid;
 @page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>QuickGrid demo</PageTitle>
 
 <QuickGrid Items="@products" Pagination="@pagination">
     <PropertyColumn Property="@(p => p.Category.CategoryName)" Sortable="true" />
