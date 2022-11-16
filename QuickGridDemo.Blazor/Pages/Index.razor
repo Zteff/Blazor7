@@ -5,6 +5,7 @@
 
 <PageTitle>QuickGrid demo</PageTitle>
 
+<Paginator Value="@pagination" />
 <QuickGrid Items="@products" Pagination="@pagination">
     <PropertyColumn Property="@(p => p.Category.CategoryName)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Supplier.CompanyName)" Sortable="true" />
@@ -16,7 +17,6 @@
         </ColumnOptions>
     </PropertyColumn>
 </QuickGrid>
-<Paginator Value="@pagination" />
 
 @code {
     [Inject]
